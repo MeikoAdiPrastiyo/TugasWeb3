@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplikasi Perhitungan Nilai</title>
+  <link rel="stylesheet" type="text/css" href="Style.CSS">
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Aplikasi Perhitungan Nilai</h1>
+
+    <label>Presensi:</label>
+    <input type="number" id="presensi" min="0" max="100" placeholder="Masukkan nilai presensi">
+
+    <label>Nilai Tugas:</label>
+    <input type="number" id="tugas" min="0" max="100" placeholder="Masukkan nilai tugas">
+
+    <label>Nilai UTS:</label>
+    <input type="number" id="uts" min="0" max="100" placeholder="Masukkan nilai UTS">
+
+    <label>Nilai UAS:</label>
+    <input type="number" id="uas" min="0" max="100" placeholder="Masukkan nilai UAS">
+
+    <button onclick="hitungNilai()">Hitung</button>
+    <button onclick="resetForm()">Cancel</button>
+
+    <h2>Hasil:</h2>
+    <p>Nilai Anda: <span id="nilaiAkhir">0</span></p>
+    <p>Dalam Angka: <span id="grade">E</span></p>
+  </div>
+
+  <script>
+    function hitungNilai() {
+      let presensi = parseFloat(document.getElementById('presensi').value) || 0;
+      let tugas = parseFloat(document.getElementById('tugas').value) || 0;
+      let uts = parseFloat(document.getElementById('uts').value) || 0;
+      let uas = parseFloat(document.getElementById('uas').value) || 0;
+
+      let nilaiAkhir = (presensi * 0.1) + (tugas * 0.2) + (uts * 0.3) + (uas * 0.4);
+
+      let grade;
+      if (nilaiAkhir > 80) {
+        grade = 'A';
+      } else if (nilaiAkhir > 75) {
+        grade = 'B+';
+      } else if (nilaiAkhir > 70) {
+        grade = 'B';
+      } else if (nilaiAkhir > 65) {
+        grade = 'B-';
+      } else if (nilaiAkhir > 60) {
+        grade = 'C+';
+      } else if (nilaiAkhir > 55) {
+        grade = 'C';
+      } else if (nilaiAkhir > 50) {
+        grade = 'C-';
+      } else if (nilaiAkhir > 30) {
+        grade = 'D';
+      } else {
+        grade = 'E';
+      }
+
+      document.getElementById('nilaiAkhir').textContent = nilaiAkhir.toFixed(2);
+      document.getElementById('grade').textContent = grade;
+    }
+
+    function resetForm() {
+      document.getElementById('presensi').value = '';
+      document.getElementById('tugas').value = '';
+      document.getElementById('uts').value = '';
+      document.getElementById('uas').value = '';
+      document.getElementById('nilaiAkhir').textContent = '0';
+      document.getElementById('grade').textContent = 'E';
+    }
+  </script>
+
+</body>
+
+</html>
